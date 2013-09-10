@@ -677,8 +677,10 @@ class PythonPackageDependency (Dependency):
         try:
             version = package.__version__
             # Substitute '.dev' with .0 (needed for IPython in current 
-            # Canopy) - maybe other problems can be fixed here too?
+            # Canopy) - maybe other problems can be fixed here too like 
+            # .rc2?
             version = _re.sub(r'\.dev', '.0', version)
+            version = _re.sub(r'\.rc\d', '.0', version)
         except AttributeError:
             version = None
         return version
